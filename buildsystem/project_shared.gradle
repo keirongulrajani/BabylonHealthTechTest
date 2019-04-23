@@ -1,0 +1,32 @@
+/**
+ * Common configuration for all modules
+ */
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    correctErrorTypes = true
+
+    useBuildCache = true
+}
+
+dependencies {
+    // Application dependencies
+    implementation MainApplicationDependencies.kotlin
+    implementation MainApplicationDependencies.rxjava2
+
+    // Compile time dependencies
+    implementation MainApplicationDependencies.dagger
+    kapt MainApplicationDependencies.daggerCompiler
+    compileOnly MainApplicationDependencies.assistedInjectAnnotations
+    kapt MainApplicationDependencies.assistedInjectProcessor
+
+    // Unit test
+    testImplementation UnitTestingDependencies.junit
+    testImplementation UnitTestingDependencies.kotlinTest
+    testImplementation UnitTestingDependencies.mockito
+    testImplementation(UnitTestingDependencies.mockitoKotlin) {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+    //testImplementation project(path: ':test-common')
+}

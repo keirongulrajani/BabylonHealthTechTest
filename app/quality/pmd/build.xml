@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pmd" default="all">
+
+
+    <property file="pmd.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+    <property name="skip.tests" value="true"/>
+     -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*.yarb/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.egg"/>
+        <include name="*.jar"/>
+        <include name="*.ear"/>
+        <include name="*.swc"/>
+        <include name="*.war"/>
+        <include name="*.ane"/>
+        <include name="*.zip"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <exclude name="**/?*.aj"/>
+    </patternset>
+
+    <!-- JDK definitions -->
+
+    <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+    <path id="jdk.classpath.1.8">
+        <fileset dir="${jdk.home.1.8}">
+            <include name="../default-java/jre/lib/charsets.jar"/>
+            <include name="../default-java/jre/lib/ext/cldrdata.jar"/>
+            <include name="../default-java/jre/lib/ext/dnsns.jar"/>
+            <include name="../default-java/jre/lib/ext/icedtea-sound.jar"/>
+            <include name="../default-java/jre/lib/ext/jaccess.jar"/>
+            <include name="../default-java/jre/lib/ext/java-atk-wrapper.jar"/>
+            <include name="../default-java/jre/lib/ext/localedata.jar"/>
+            <include name="../default-java/jre/lib/ext/nashorn.jar"/>
+            <include name="../default-java/jre/lib/ext/sunec.jar"/>
+            <include name="../default-java/jre/lib/ext/sunjce_provider.jar"/>
+            <include name="../default-java/jre/lib/ext/sunpkcs11.jar"/>
+            <include name="../default-java/jre/lib/ext/zipfs.jar"/>
+            <include name="../default-java/jre/lib/jce.jar"/>
+            <include name="../default-java/jre/lib/jsse.jar"/>
+            <include name="../default-java/jre/lib/management-agent.jar"/>
+            <include name="../default-java/jre/lib/resources.jar"/>
+            <include name="../default-java/jre/lib/rt.jar"/>
+        </fileset>
+    </path>
+
+    <property name="project.jdk.home" value=""/>
+    <property name="project.jdk.bin" value=""/>
+    <property name="project.jdk.classpath" value=""/>
+
+
+    <!-- Modules -->
+
+
+    <!-- Module custom-rules -->
+
+    <dirname property="module.custom-rules.basedir" file="${ant.file}"/>
+
+
+    <property name="module.jdk.home.custom-rules" value="${jdk.home.1.8}"/>
+    <property name="module.jdk.bin.custom-rules" value="${jdk.bin.1.8}"/>
+    <property name="module.jdk.classpath.custom-rules" value="jdk.classpath.1.8"/>
+
+    <property name="compiler.args.custom-rules" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+
+    <property name="custom-rules.output.dir" value="${module.custom-rules.basedir}/out/production/custom-rules"/>
+    <property name="custom-rules.testoutput.dir" value="${module.custom-rules.basedir}/out/test/custom-rules"/>
+
+    <path id="custom-rules.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="custom-rules.module.production.classpath">
+        <path refid="${module.jdk.classpath.custom-rules}"/>
+        <pathelement location="${basedir}/asm-5.0.4.jar"/>
+        <pathelement location="${basedir}/commons-io-2.4.jar"/>
+        <pathelement location="${basedir}/commons-lang3-3.4.jar"/>
+        <pathelement location="${basedir}/dom4j-1.6.1.jar"/>
+        <pathelement location="${basedir}/javacc-5.0.jar"/>
+        <pathelement location="${basedir}/jaxen-1.1.6.jar"/>
+        <pathelement location="${basedir}/jcommander-1.48.jar"/>
+        <pathelement location="${basedir}/jdom-1.0.jar"/>
+        <pathelement location="${basedir}/pmd-core-5.4.1.jar"/>
+        <pathelement location="${basedir}/pmd-java-5.4.1.jar"/>
+        <pathelement location="${basedir}/rhino-1.7.7.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8-dom.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8.jar"/>
+        <pathelement location="${basedir}/xercesImpl-2.9.1.jar"/>
+        <pathelement location="${basedir}/xml-apis-1.3.02.jar"/>
+        <pathelement location="${basedir}/xmlParserAPIs-2.6.2.jar"/>
+        <pathelement location="${basedir}/xom-1.0.jar"/>
+    </path>
+
+    <path id="custom-rules.runtime.production.module.classpath">
+        <pathelement location="${custom-rules.output.dir}"/>
+        <pathelement location="${basedir}/asm-5.0.4.jar"/>
+        <pathelement location="${basedir}/commons-io-2.4.jar"/>
+        <pathelement location="${basedir}/commons-lang3-3.4.jar"/>
+        <pathelement location="${basedir}/dom4j-1.6.1.jar"/>
+        <pathelement location="${basedir}/javacc-5.0.jar"/>
+        <pathelement location="${basedir}/jaxen-1.1.6.jar"/>
+        <pathelement location="${basedir}/jcommander-1.48.jar"/>
+        <pathelement location="${basedir}/jdom-1.0.jar"/>
+        <pathelement location="${basedir}/pmd-core-5.4.1.jar"/>
+        <pathelement location="${basedir}/pmd-java-5.4.1.jar"/>
+        <pathelement location="${basedir}/rhino-1.7.7.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8-dom.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8.jar"/>
+        <pathelement location="${basedir}/xercesImpl-2.9.1.jar"/>
+        <pathelement location="${basedir}/xml-apis-1.3.02.jar"/>
+        <pathelement location="${basedir}/xmlParserAPIs-2.6.2.jar"/>
+        <pathelement location="${basedir}/xom-1.0.jar"/>
+    </path>
+
+    <path id="custom-rules.module.classpath">
+        <path refid="${module.jdk.classpath.custom-rules}"/>
+        <pathelement location="${custom-rules.output.dir}"/>
+        <pathelement location="${basedir}/asm-5.0.4.jar"/>
+        <pathelement location="${basedir}/commons-io-2.4.jar"/>
+        <pathelement location="${basedir}/commons-lang3-3.4.jar"/>
+        <pathelement location="${basedir}/dom4j-1.6.1.jar"/>
+        <pathelement location="${basedir}/javacc-5.0.jar"/>
+        <pathelement location="${basedir}/jaxen-1.1.6.jar"/>
+        <pathelement location="${basedir}/jcommander-1.48.jar"/>
+        <pathelement location="${basedir}/jdom-1.0.jar"/>
+        <pathelement location="${basedir}/pmd-core-5.4.1.jar"/>
+        <pathelement location="${basedir}/pmd-java-5.4.1.jar"/>
+        <pathelement location="${basedir}/rhino-1.7.7.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8-dom.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8.jar"/>
+        <pathelement location="${basedir}/xercesImpl-2.9.1.jar"/>
+        <pathelement location="${basedir}/xml-apis-1.3.02.jar"/>
+        <pathelement location="${basedir}/xmlParserAPIs-2.6.2.jar"/>
+        <pathelement location="${basedir}/xom-1.0.jar"/>
+    </path>
+
+    <path id="custom-rules.runtime.module.classpath">
+        <pathelement location="${custom-rules.testoutput.dir}"/>
+        <pathelement location="${custom-rules.output.dir}"/>
+        <pathelement location="${basedir}/asm-5.0.4.jar"/>
+        <pathelement location="${basedir}/commons-io-2.4.jar"/>
+        <pathelement location="${basedir}/commons-lang3-3.4.jar"/>
+        <pathelement location="${basedir}/dom4j-1.6.1.jar"/>
+        <pathelement location="${basedir}/javacc-5.0.jar"/>
+        <pathelement location="${basedir}/jaxen-1.1.6.jar"/>
+        <pathelement location="${basedir}/jcommander-1.48.jar"/>
+        <pathelement location="${basedir}/jdom-1.0.jar"/>
+        <pathelement location="${basedir}/pmd-core-5.4.1.jar"/>
+        <pathelement location="${basedir}/pmd-java-5.4.1.jar"/>
+        <pathelement location="${basedir}/rhino-1.7.7.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8-dom.jar"/>
+        <pathelement location="${basedir}/saxon-9.1.0.8.jar"/>
+        <pathelement location="${basedir}/xercesImpl-2.9.1.jar"/>
+        <pathelement location="${basedir}/xml-apis-1.3.02.jar"/>
+        <pathelement location="${basedir}/xmlParserAPIs-2.6.2.jar"/>
+        <pathelement location="${basedir}/xom-1.0.jar"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.custom-rules">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.custom-rules">
+        <patternset refid="excluded.from.module.custom-rules"/>
+    </patternset>
+
+    <path id="custom-rules.module.sourcepath">
+        <dirset dir="${module.custom-rules.basedir}/custom-rules">
+            <include name="src"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.custom-rules" depends="compile.module.custom-rules.production,compile.module.custom-rules.tests"
+            description="Compile module custom-rules"/>
+
+    <target name="compile.module.custom-rules.production" description="Compile module custom-rules; production classes">
+        <mkdir dir="${custom-rules.output.dir}"/>
+        <javac destdir="${custom-rules.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.custom-rules}/javac">
+            <compilerarg line="${compiler.args.custom-rules}"/>
+            <bootclasspath refid="custom-rules.module.bootclasspath"/>
+            <classpath refid="custom-rules.module.production.classpath"/>
+            <src refid="custom-rules.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.custom-rules"/>
+        </javac>
+
+        <copy todir="${custom-rules.output.dir}">
+            <fileset dir="${module.custom-rules.basedir}/custom-rules/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.custom-rules.tests" depends="compile.module.custom-rules.production"
+            description="compile module custom-rules; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.custom-rules" description="cleanup module">
+        <delete dir="${custom-rules.output.dir}"/>
+        <delete dir="${custom-rules.testoutput.dir}"/>
+    </target>
+
+
+    <!-- Module pmd -->
+
+    <dirname property="module.pmd.basedir" file="${ant.file}"/>
+
+
+    <property name="module.jdk.home.pmd" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.pmd" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.pmd" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.pmd" value="-encoding UTF-8 -source 1.3 -target 1.3 ${compiler.args}"/>
+
+    <property name="pmd.output.dir" value="${module.pmd.basedir}/out/production/pmd"/>
+    <property name="pmd.testoutput.dir" value="${module.pmd.basedir}/out/test/pmd"/>
+
+    <path id="pmd.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="pmd.module.production.classpath"/>
+
+    <path id="pmd.runtime.production.module.classpath">
+        <pathelement location="${pmd.output.dir}"/>
+    </path>
+
+    <path id="pmd.module.classpath">
+        <pathelement location="${pmd.output.dir}"/>
+    </path>
+
+    <path id="pmd.runtime.module.classpath">
+        <pathelement location="${pmd.testoutput.dir}"/>
+        <pathelement location="${pmd.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.pmd">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.pmd">
+        <patternset refid="excluded.from.module.pmd"/>
+    </patternset>
+
+
+    <target name="compile.module.pmd" depends="compile.module.pmd.production,compile.module.pmd.tests" description="Compile module pmd"/>
+
+    <target name="compile.module.pmd.production" description="Compile module pmd; production classes"/>
+
+    <target name="compile.module.pmd.tests" depends="compile.module.pmd.production" description="compile module pmd; test classes"
+            unless="skip.tests"/>
+
+    <target name="clean.module.pmd" description="cleanup module">
+        <delete dir="${pmd.output.dir}"/>
+        <delete dir="${pmd.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean" depends="clean.module.custom-rules, clean.module.pmd" description="cleanup all"/>
+
+    <target name="build.modules" depends="init, clean, compile.module.custom-rules, compile.module.pmd" description="build all modules"/>
+
+    <target name="jar" depends="compile.module.custom-rules">
+        <jar destfile="${basedir}/custom-rules.jar"
+             basedir="${custom-rules.output.dir}"/>
+    </target>
+    <target name="all" depends="build.modules, jar" description="build all"/>
+</project>

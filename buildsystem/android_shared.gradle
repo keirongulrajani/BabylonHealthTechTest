@@ -1,0 +1,30 @@
+/**
+ * Common configuration for android modules and android main application
+ */
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
+apply from: "${rootDir}/buildsystem/project_shared.gradle"
+apply from: "${rootDir}/buildsystem/android_plugin.gradle"
+
+dependencies {
+
+    implementation MainApplicationDependencies.androidAnnotations
+    implementation MainApplicationDependencies.kotlinKtx
+    implementation MainApplicationDependencies.room
+    implementation MainApplicationDependencies.roomRx
+    implementation MainApplicationDependencies.retrofit
+    implementation MainApplicationDependencies.retrofitGson
+    implementation MainApplicationDependencies.retrofitRxAdapter
+
+    // kapt dependencies
+    kapt MainApplicationDependencies.archComponentLifeCycleCompiler
+    kapt MainApplicationDependencies.roomCompiler
+
+    kaptAndroidTest MainApplicationDependencies.daggerCompiler
+    kaptTest MainApplicationDependencies.roomCompiler
+
+    // Unit tests
+    testImplementation UnitTestingDependencies.robolectric
+    testImplementation UnitTestingDependencies.robolectricMultidex
+}
