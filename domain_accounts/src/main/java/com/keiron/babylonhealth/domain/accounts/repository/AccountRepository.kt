@@ -6,5 +6,4 @@ import io.reactivex.Single
 interface AccountRepository {
 
     fun getAllUserAccounts(): Single<List<User>>
-
 }
