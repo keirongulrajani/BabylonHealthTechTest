@@ -58,7 +58,7 @@ task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
     main = "com.github.shyiko.ktlint.Main"
-    args "app/**/*.kt", "data-*/**/*.kt", "domain-*/**/*.kt", "library-*/**/*.kt", "ui-components/**/*.kt", "test-*/**/*.kt", "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    args "app/**/*.kt", "data_*/**/*.kt", "domain_*/**/*.kt", "library_*/**/*.kt", "ui-components/**/*.kt", "test-*/**/*.kt", "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
     // see https://github.com/shyiko/ktlint#usage for more
 }
 
@@ -66,7 +66,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     description = "Fix Kotlin code style deviations."
     classpath = configurations.ktlint
     main = "com.github.shyiko.ktlint.Main"
-    args "-F", "app/**/*.kt", "data-*/**/*.kt", "domain-*/**/*.kt", "library-*/**/*.kt", "ui-components/**/*.kt", "test-*/**/*.kt"
+    args "-F", "app/**/*.kt", "data_*/**/*.kt", "domain_*/**/*.kt", "library_*/**/*.kt", "ui-components/**/*.kt", "test-*/**/*.kt"
 }
 
 task staticAnalysis(type: GradleBuild) {

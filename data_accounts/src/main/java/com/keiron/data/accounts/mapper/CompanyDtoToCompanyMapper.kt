@@ -13,5 +13,4 @@ class CompanyDtoToCompanyMapper @Inject constructor() : BaseMapperToDomain<Compa
             businessDescription = toBeTransformed.businessDescription
         )
     }
-
 }

@@ -13,4 +13,3 @@ class GetAllUsersUseCase @Inject constructor(private val accountRepository: Acco
         return accountRepository.getAllUserAccounts()
     }
 }
-

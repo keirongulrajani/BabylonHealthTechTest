@@ -21,5 +21,4 @@ class AddressDtoToAddressMapper @Inject constructor() : BaseMapperToDomain<Addre
     private fun getGeoLocation(geoLocation: GeoDto): GeoLocation {
         return GeoLocation(geoLocation.latitude, geoLocation.longitude)
     }
-
 }

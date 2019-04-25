@@ -15,5 +15,4 @@ class CommentDtoToCommentMapper @Inject constructor() : BaseMapperToDomain<Comme
             toBeTransformed.body
         )
     }
-
 }

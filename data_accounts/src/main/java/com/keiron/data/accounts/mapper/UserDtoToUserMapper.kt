@@ -23,5 +23,4 @@ class UserDtoToUserMapper @Inject constructor(
             companyDtoToCompanyMapper.mapToDomain(toBeTransformed.company)
         )
     }
-
 }

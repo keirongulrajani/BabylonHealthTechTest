@@ -27,5 +27,4 @@ abstract class BaseMapperToDomain<SOURCE, TARGET> {
 
         return targetList
     }
-
 }
