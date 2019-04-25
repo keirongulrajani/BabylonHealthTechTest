@@ -1,7 +1,9 @@
 package com.keiron.data.accounts.di
 
 import com.google.gson.Gson
+import com.keiron.babylonhealth.domain.accounts.repository.AccountRepository
 import com.keiron.data.accounts.client.ProfileClient
+import com.keiron.data.accounts.repository.AccountRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -27,5 +29,10 @@ public class AccountsModule {
             .build()
 
         return restAdapter.create(ProfileClient::class.java)
+    }
+
+    @Provides
+    fun provideAccountRepository(accountRepositoryImpl: AccountRepositoryImpl): AccountRepository {
+        return accountRepositoryImpl
     }
 }
