@@ -6,19 +6,21 @@ import com.keiron.data.accounts.client.ProfileClient
 import com.keiron.data.accounts.repository.AccountRepositoryImpl
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-public class AccountsModule {
+class AccountsModule {
 
     companion object {
         const val BASE_URL = "http://jsonplaceholder.typicode.com"
     }
 
     @Provides
+    @Reusable
     fun provideProfileClient(okHttpClient: OkHttpClient, gson: Gson): ProfileClient {
         val restAdapter = Retrofit.Builder()
             .client(okHttpClient)
