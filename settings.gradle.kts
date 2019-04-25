@@ -5,5 +5,6 @@ include(
     ":library_common",
     ":domain_accounts",
     ":domain_common",
+    ":ui_components",
     ":domain_posts"
 )

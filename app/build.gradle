@@ -39,11 +39,22 @@ dependencies {
     implementation MainApplicationDependencies.rxandroid
     implementation MainApplicationDependencies.archComponentLifeCycleExtensions
     implementation MainApplicationDependencies.lottie
+    implementation MainApplicationDependencies.glide
+
+    annotationProcessor MainApplicationDependencies.glideAnnotations
 
     testImplementation UnitTestingDependencies.archComponentCoreTesting
     testImplementation UnitTestingDependencies.junit
+    
+    implementation project(path: ':library_common')
+    implementation project(path: ':ui_components')
 
-    // data
-    implementation project(path: ':data_accounts')
+    //data
     implementation project(path: ':data_posts')
+    implementation project(path: ':data_accounts')
+
+    //domains
+    implementation project(path: ':domain_posts')
+    implementation project(path: ':domain_accounts')
+    implementation project(path: ':domain_common')
 }
