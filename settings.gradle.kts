@@ -1,1 +1,9 @@
-include(":app", ":data_posts", ":data_accounts", ":library_common", ":domain_accounts", ":domain_common")
+include(
+    ":app",
+    ":data_posts",
+    ":data_accounts",
+    ":library_common",
+    ":domain_accounts",
+    ":domain_common",
+    ":domain_posts"
+)
