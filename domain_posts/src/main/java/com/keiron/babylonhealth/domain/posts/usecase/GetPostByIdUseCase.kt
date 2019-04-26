@@ -9,12 +9,12 @@ import javax.inject.Inject
 class GetPostByIdUseCase @Inject constructor(
     private val getAllPostsUseCase: GetAllPostsUseCase
 ) : UseCase<Single<Post>, Int>() {
-    override fun buildUseCase(postId: Int): Single<Post> {
+    override fun buildUseCase(params: Int): Single<Post> {
         return getAllPostsUseCase.buildUseCase()
-            .map { postList -> postList.first { it.id == postId } }
+            .map { postList -> postList.first { it.id == params } }
             .onErrorResumeNext {
                 if (it is NoSuchElementException) {
-                    Single.error(NoPostFoundException(postId))
+                    Single.error(NoPostFoundException(params))
                 } else {
                     Single.error(it)
                 }

@@ -1,5 +1,6 @@
 package com.keiron.library.common.network.di
 
+import android.content.Context
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,13 @@ class NetworkModule {
     @Named(TIMEOUT_IN_SECONDS)
     fun provideNetworkTimeout(): Int {
         return TIMEOUT_IN_SEC
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpCache(application: Context): Cache {
+        val cacheSize = 20 * 1024 * 1024 // 20 MiB
+        return Cache(application.cacheDir, cacheSize.toLong())
     }
 
     @Provides

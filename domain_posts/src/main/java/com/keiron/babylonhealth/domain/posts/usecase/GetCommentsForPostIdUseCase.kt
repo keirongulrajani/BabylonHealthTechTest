@@ -7,10 +7,10 @@ import javax.inject.Inject
 
 class GetCommentsForPostIdUseCase @Inject constructor(private val getAllCommentsUseCase: GetAllCommentsUseCase) :
     UseCase<Single<List<Comment>>, Int>() {
-    override fun buildUseCase(postId: Int): Single<List<Comment>> {
+    override fun buildUseCase(params: Int): Single<List<Comment>> {
         return getAllCommentsUseCase.buildUseCase()
             .flattenAsFlowable { it }
-            .filter { it.postId == postId }
+            .filter { it.postId == params }
             .toList()
     }
 }

@@ -29,5 +29,5 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     }
-    //testImplementation project(path: ':test-common')
+    implementation QualityDependencies.findbugs
 }

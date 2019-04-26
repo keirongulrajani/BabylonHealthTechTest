@@ -19,11 +19,11 @@ object Versions {
     const val playServices = "15.0.1"
 
     // Third party libraries
-    const val dagger = "2.21"
+    const val dagger = "2.22.1"
     const val assistedInject = "0.3.3"
     const val retrofit = "2.5.0"
     const val okhttp = "3.12.1" // version 3.13.0 bumps min SDK to API 21, so don't update
-    const val rxjava = "2.2.7"
+    const val rxjava = "2.2.8"
     const val rxkotlin = "2.3.0"
     const val rxAndroid = "2.1.1"
     const val reactiveNetwork = "3.0.2"
@@ -50,6 +50,7 @@ object Versions {
     // Quality
     const val checkstyle = "8.18"
     const val ktlint = "0.30.0"
+    const val findbugs = "3.0.2"
 
     // Arch components
     const val archComponents = "2.0.0-rc01"
@@ -131,4 +132,5 @@ object DevelopmentDependencies {
 object QualityDependencies {
     const val checkstyle = "com.puppycrawl.tools:checkstyle:${Versions.checkstyle}"
     const val ktlint = "com.github.shyiko:ktlint:${Versions.ktlint}"
+    const val findbugs = "com.google.code.findbugs:jsr305:${Versions.findbugs}"
 }

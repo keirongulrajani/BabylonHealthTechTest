@@ -45,7 +45,7 @@ dependencies {
 
     testImplementation UnitTestingDependencies.archComponentCoreTesting
     testImplementation UnitTestingDependencies.junit
-    
+
     implementation project(path: ':library_common')
     implementation project(path: ':ui_components')
 
