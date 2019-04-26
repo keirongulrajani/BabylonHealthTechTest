@@ -7,6 +7,7 @@ data class DetailsViewState(
 ) {
     sealed class Error {
         object None : Error()
+        object NoPostFound : Error()
         data class NetworkIssue(val title: String) : Error()
     }
 }

@@ -5,4 +5,5 @@ dependencies {
 
     // Domain
     implementation project(path: ':domain_common')
+    implementation project(path: ':domain_accounts')
 }

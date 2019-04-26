@@ -3,7 +3,7 @@ package com.keiron.techtest.section.main.model
 data class MainViewState(
     val loading: Boolean,
     val error: Error,
-    val mainUiModel: List<MainUiModel>
+    val mainUiModels: List<MainUiModel>
 ) {
     sealed class Error {
         object None : Error()
