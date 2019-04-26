@@ -1,7 +1,7 @@
 package com.keiron.babylonhealth.domain.posts.usecase
 
 import com.keiron.babylonhealth.domain.posts.exception.NoPostFoundException
-import com.keiron.babylonhealth.domain.posts.model.Post
+import com.keiron.babylonhealth.domain.posts.model.PostDetails
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -15,34 +15,34 @@ import org.mockito.MockitoAnnotations
 class GetPostByIdUseCaseTest {
 
     @Mock
-    private lateinit var getAllPostsUseCase: GetAllPostsUseCase
+    private lateinit var getAllPostsWithDetailsUseCase: GetAllPostsWithDetailsUseCase
 
     private lateinit var classUnderTest: GetPostByIdUseCase
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        classUnderTest = GetPostByIdUseCase(getAllPostsUseCase)
+        classUnderTest = GetPostByIdUseCase(getAllPostsWithDetailsUseCase)
     }
 
     @Test
-    fun `given post list from getAllPostsUseCase contains post when build use case then correct post returned`() {
+    fun `given post list from getAllPostsWithDetailsUseCase contains post when build use case then correct post returned`() {
         // Given
         val expectedId = 123
-        val expectedPost = mock<Post> {
+        val expectedPost = mock<PostDetails> {
             on { id } doReturn expectedId
         }
-        val otherPost = mock<Post> {
+        val otherPost = mock<PostDetails> {
             on { id } doReturn 456
         }
 
-        whenever(getAllPostsUseCase.buildUseCase()).thenReturn(Single.just(listOf(expectedPost, otherPost)))
+        whenever(getAllPostsWithDetailsUseCase.buildUseCase()).thenReturn(Single.just(listOf(expectedPost, otherPost)))
 
         // When
         val testObserver = classUnderTest.buildUseCase(expectedId).test()
 
         // Then
-        verify(getAllPostsUseCase).buildUseCase()
+        verify(getAllPostsWithDetailsUseCase).buildUseCase()
 
         testObserver.assertComplete()
             .assertNoErrors()
@@ -50,22 +50,22 @@ class GetPostByIdUseCaseTest {
     }
 
     @Test
-    fun `given post list from getAllPostsUseCase does not contain post when build use case then throws NoPostFoundException`() {
+    fun `given post list from getAllPostsWithDetailsUseCase does not contain post when build use case then throws NoPostFoundException`() {
         // Given
-        val post = mock<Post> {
+        val post = mock<PostDetails> {
             on { id } doReturn 123
         }
-        val otherPost = mock<Post> {
+        val otherPost = mock<PostDetails> {
             on { id } doReturn 456
         }
 
-        whenever(getAllPostsUseCase.buildUseCase()).thenReturn(Single.just(listOf(post, otherPost)))
+        whenever(getAllPostsWithDetailsUseCase.buildUseCase()).thenReturn(Single.just(listOf(post, otherPost)))
 
         // When
         val testObserver = classUnderTest.buildUseCase(789).test()
 
         // Then
-        verify(getAllPostsUseCase).buildUseCase()
+        verify(getAllPostsWithDetailsUseCase).buildUseCase()
 
         testObserver.assertError(NoPostFoundException::class.java)
             .assertNoValues()
@@ -73,16 +73,16 @@ class GetPostByIdUseCaseTest {
     }
 
     @Test
-    fun `given getAllPostsUseCase throws error when build use case then throws same error`() {
+    fun `given getAllPostsWithDetailsUseCase throws error when build use case then throws same error`() {
         // Given
         val throwable = Throwable()
-        whenever(getAllPostsUseCase.buildUseCase()).thenReturn(Single.error(throwable))
+        whenever(getAllPostsWithDetailsUseCase.buildUseCase()).thenReturn(Single.error(throwable))
 
         // When
         val testObserver = classUnderTest.buildUseCase(789).test()
 
         // Then
-        verify(getAllPostsUseCase).buildUseCase()
+        verify(getAllPostsWithDetailsUseCase).buildUseCase()
 
         testObserver.assertError(throwable)
             .assertNoValues()
