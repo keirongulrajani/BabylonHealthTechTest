@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.keiron.babylonhealth.ui.components.extensions.observe
+import com.keiron.babylonhealth.ui.components.recyclerview.decoration.SimpleDividerItemDecoration
 import com.keiron.techtest.R
 import com.keiron.techtest.di.ApplicationComponentHolder
 import com.keiron.techtest.section.details.model.DetailsViewState
@@ -34,6 +35,7 @@ class DetailsFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
         super.onViewCreated(view, savedInstanceState)
         commentAdapter = CommentAdapter()
         commentList.apply {
+            addItemDecoration(SimpleDividerItemDecoration(context))
             adapter = commentAdapter
         }
         val postId = arguments!!.getInt(ARG_SELECTED_POST_ID)

@@ -154,5 +154,4 @@ class DetailsViewModelTest {
         assertEquals(DetailsViewState.Error.NoPostFound(postId), viewStateSuccess.error)
         assertNull(viewStateLoading.detailsUiModel)
     }
-
 }

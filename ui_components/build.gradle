@@ -4,4 +4,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation MainApplicationDependencies.appCompat
+    implementation MainApplicationDependencies.recyclerView
 }

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.keiron.babylonhealth.ui.components.extensions.observe
+import com.keiron.babylonhealth.ui.components.recyclerview.decoration.SimpleDividerItemDecoration
 import com.keiron.techtest.R
 import com.keiron.techtest.di.ApplicationComponentHolder
 import com.keiron.techtest.section.details.DetailsFragment
@@ -41,6 +42,7 @@ class MainFragment(contentLayoutId: Int) : Fragment(contentLayoutId), OnPostClic
         postAdapter = PostSnippetAdapter(this)
         postList.apply {
             setHasFixedSize(true)
+            addItemDecoration(SimpleDividerItemDecoration(context))
             adapter = postAdapter
         }
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Keiron\'s Babylon Health Tech Test</string>
     <string name="details_no_post_found">No post found matching id %d</string>
+    <string name="comments_title">Comments:</string>
 
     <plurals name="comments">
         <item quantity="one">%d comment</item>
