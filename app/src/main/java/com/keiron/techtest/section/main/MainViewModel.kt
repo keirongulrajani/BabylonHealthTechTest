@@ -1,25 +1,43 @@
 package com.keiron.techtest.section.main
 
-import com.keiron.babylonhealth.domain.posts.usecase.GetAllPostsUseCase
+import androidx.lifecycle.MutableLiveData
+import com.keiron.babylonhealth.domain.posts.usecase.GetAllPostsWithDetailsUseCase
 import com.keiron.babylonhealth.ui.components.viewmodel.BaseViewModel
 import com.keiron.library.common.schedulers.SchedulersProvider
+import com.keiron.techtest.section.main.mapper.PostDetailsToMainUiModelMapper
+import com.keiron.techtest.section.main.model.MainUiModel
+import com.keiron.techtest.section.main.model.MainViewState
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val getAllPostsUseCase: GetAllPostsUseCase,
-    private val schedulersProvider: SchedulersProvider
+    private val getAllPostsWithDetailsUseCase: GetAllPostsWithDetailsUseCase,
+    private val schedulersProvider: SchedulersProvider,
+    private val postDetailsToMainUiModelMapper: PostDetailsToMainUiModelMapper
 ) : BaseViewModel() {
 
+    internal val mainViewState = MutableLiveData<MainViewState>()
+
     fun onMainPageCreated() {
-        getAllPostsUseCase.buildUseCase()
+        getAllPostsWithDetailsUseCase.buildUseCase()
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.mainThread())
+            .doOnSubscribe { mainViewState.postValue(createLoadingState()) }
+            .map { postDetailsToMainUiModelMapper.mapToPresentation(it) }
             .subscribe({
-                System.out.println("Got back this list: $it")
+                mainViewState.postValue(createDataState(it))
             }, {
-                System.out.println("Got back this error: $it")
+                mainViewState.postValue(createErrorState(it))
             })
             .addTo(compositeDisposable)
     }
+
+    private fun createLoadingState(): MainViewState = MainViewState(true, MainViewState.Error.None, emptyList())
+
+    private fun createErrorState(throwable: Throwable): MainViewState {
+        return MainViewState(false, MainViewState.Error.NetworkIssue("Error fetching posts: $throwable"), emptyList())
+    }
+
+    private fun createDataState(uiModels: List<MainUiModel>): MainViewState =
+        MainViewState(false, MainViewState.Error.None, uiModels)
 }
