@@ -77,8 +77,8 @@ class MainViewModelTest {
         // Given
         val postDetailsList = listOf<PostDetails>(mock())
         whenever(getAllPostsWithDetailsUseCase.buildUseCase()).thenReturn(Single.just(postDetailsList))
-        val uiModelList = listOf<MainUiModel>(mock())
-        whenever(postDetailsToMainUiModelMapper.mapToPresentation(postDetailsList)).thenReturn(uiModelList)
+        val expectedUiModelList = listOf<MainUiModel>(mock())
+        whenever(postDetailsToMainUiModelMapper.mapToPresentation(postDetailsList)).thenReturn(expectedUiModelList)
 
         // When
         classUnderTest.onMainPageCreated()
@@ -95,7 +95,7 @@ class MainViewModelTest {
         val viewStateSuccess = argumentCaptor.allValues[1]
         assertEquals(false, viewStateSuccess.loading)
         assertEquals(MainViewState.Error.None, viewStateSuccess.error)
-        assertEquals(uiModelList, viewStateSuccess.mainUiModels)
+        assertEquals(expectedUiModelList, viewStateSuccess.mainUiModels)
     }
 
     @Test
