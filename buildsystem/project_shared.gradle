@@ -18,8 +18,6 @@ dependencies {
     // Compile time dependencies
     implementation MainApplicationDependencies.dagger
     kapt MainApplicationDependencies.daggerCompiler
-    compileOnly MainApplicationDependencies.assistedInjectAnnotations
-    kapt MainApplicationDependencies.assistedInjectProcessor
 
     // Unit test
     testImplementation UnitTestingDependencies.junit
@@ -29,5 +27,6 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     }
-    implementation QualityDependencies.findbugs
+    
+    implementation MainApplicationDependencies.jetbrainsAnnotations
 }

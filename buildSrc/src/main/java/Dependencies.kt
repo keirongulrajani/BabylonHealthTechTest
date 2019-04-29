@@ -16,17 +16,14 @@ object Versions {
     const val cardview = "1.0.0"
     const val multiDex = "2.0.0"
     const val constraintLayout = "1.1.3"
-    const val playServices = "15.0.1"
 
     // Third party libraries
     const val dagger = "2.22.1"
-    const val assistedInject = "0.3.3"
     const val retrofit = "2.5.0"
     const val okhttp = "3.12.1" // version 3.13.0 bumps min SDK to API 21, so don't update
     const val rxjava = "2.2.8"
     const val rxkotlin = "2.3.0"
     const val rxAndroid = "2.1.1"
-    const val reactiveNetwork = "3.0.2"
     const val jetbrainsAnnotations = "17.0.0"
 
     // Unit Testing
@@ -35,17 +32,10 @@ object Versions {
     const val mockito = "2.24.5"
     const val mockitoKotlin = "1.6.0"
 
-    // Development
-    const val leakCanary = "1.6.3"
-
     // Image loading
-    const val glide = "4.7.1"
-
     // Vector Animations
-    const val lottie = "2.7.0" // version 2.8.0 requires androidx, so don't update
-
-    // Database
-    const val room = "2.0.0-rc01"
+    const val lottie = "3.0.1"
+    const val glide = "4.9.0"
 
     // Quality
     const val checkstyle = "8.18"
@@ -57,10 +47,6 @@ object Versions {
 
     // Android tools
     const val androidTools = "26.3.1"
-    const val androidUiAutomator = "2.1.3"
-
-    // Flexbox
-    const val flexbox = "1.0.0"
 }
 
 object ProjectDependencies {
@@ -84,15 +70,9 @@ object MainApplicationDependencies {
     const val supportV4 = "androidx.legacy:legacy-support-v4:${Versions.androidx}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-    const val assistedInjectAnnotations =
-        "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.assistedInject}"
-    const val assistedInjectProcessor =
-        "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.assistedInject}"
-    const val flexbox = "com.google.android:flexbox:${Versions.flexbox}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
-    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideAnnotations = "com.github.bumptech.glide:compiler:${Versions.glide}"
@@ -100,16 +80,11 @@ object MainApplicationDependencies {
     const val rxjava2 = "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
     const val rxkotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
     const val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    const val room = "androidx.room:room-runtime:${Versions.room}"
-    const val roomRx = "androidx.room:room-rxjava2:${Versions.room}"
-    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val archComponentLifeCycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val archComponentLifeCycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.archComponents}"
     const val lintapi = "com.android.tools.lint:lint-api:${Versions.androidTools}"
     const val lintchecks = "com.android.tools.lint:lint-checks:${Versions.androidTools}"
-    const val reactiveNetwork = "com.github.pwittchen:reactivenetwork-rx2:${Versions.reactiveNetwork}"
     const val jetbrainsAnnotations = "org.jetbrains:annotations:${Versions.jetbrainsAnnotations}"
-    const val percentLibrary = "androidx.percentlayout:percentlayout:${Versions.androidx}"
 }
 
 object UnitTestingDependencies {
@@ -121,12 +96,6 @@ object UnitTestingDependencies {
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
     const val archComponentCoreTesting = "androidx.arch.core:core-testing:${Versions.archComponents}"
-}
-
-object DevelopmentDependencies {
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val leakCanaryFragment = "com.squareup.leakcanary:leakcanary-support-fragment:${Versions.leakCanary}"
-    const val uiAutomator = "com.android.support.test.uiautomator:uiautomator-v18:${Versions.androidUiAutomator}"
 }
 
 object QualityDependencies {
