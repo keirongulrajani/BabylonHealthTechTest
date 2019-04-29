@@ -2,7 +2,7 @@ package com.keiron.techtest.section.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
+import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.babylonhealth.domain.posts.usecase.GetAllPostsWithDetailsUseCase
 import com.keiron.library.common.schedulers.SchedulersProvider
 import com.keiron.techtest.section.main.mapper.PostDetailsToMainUiModelMapper

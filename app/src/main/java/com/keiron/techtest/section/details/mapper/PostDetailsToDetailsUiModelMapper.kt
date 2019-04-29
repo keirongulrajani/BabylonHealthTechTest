@@ -1,6 +1,6 @@
 package com.keiron.techtest.section.details.mapper
 
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
+import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.library.common.mapper.BaseMapperToPresentation
 import com.keiron.techtest.section.details.model.DetailsUiModel
 import javax.inject.Inject

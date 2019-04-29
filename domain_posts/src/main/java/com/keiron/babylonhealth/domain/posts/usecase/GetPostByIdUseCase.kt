@@ -1,8 +1,8 @@
 package com.keiron.babylonhealth.domain.posts.usecase
 
+import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.babylonhealth.domain.common.usecase.UseCase
 import com.keiron.babylonhealth.domain.posts.exception.NoPostFoundException
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
 import io.reactivex.Single
 import javax.inject.Inject
 

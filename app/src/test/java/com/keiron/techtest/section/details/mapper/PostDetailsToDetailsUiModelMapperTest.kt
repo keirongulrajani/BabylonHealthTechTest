@@ -1,8 +1,8 @@
 package com.keiron.techtest.section.details.mapper
 
-import com.keiron.babylonhealth.domain.accounts.model.User
-import com.keiron.babylonhealth.domain.posts.model.Comment
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
+import com.keiron.babylonhealth.domain.common.model.CommentDetails
+import com.keiron.babylonhealth.domain.common.model.PostDetails
+import com.keiron.babylonhealth.domain.common.model.UserDetails
 import com.keiron.techtest.section.details.model.CommentUiModel
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -30,11 +30,11 @@ class PostDetailsToDetailsUiModelMapperTest {
         // Given
         val expectedPostTitle = "title"
         val expectedAuthorTitle = "username"
-        val user = mock<User> {
+        val user = mock<UserDetails> {
             on { username } doReturn expectedAuthorTitle
         }
         val expectedBody = "body"
-        val commentList = listOf(mock<Comment>())
+        val commentList = listOf(mock<CommentDetails>())
         val postDetails = mock<PostDetails> {
             on { title } doReturn expectedPostTitle
             on { body } doReturn expectedBody

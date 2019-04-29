@@ -5,12 +5,11 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <ProgressBar
+    <com.keiron.techtest.view.LoadingView
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true"/>
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/errorText"
@@ -34,8 +33,8 @@
             android:layout_marginLeft="@dimen/default_left_margin"
             android:layout_marginTop="8dp"
             android:gravity="start|center_vertical"
-            android:textSize="23sp"
             android:textColor="@color/colorAccent"
+            android:textSize="23sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,8 +47,8 @@
             android:layout_marginStart="@dimen/default_left_margin"
             android:layout_marginLeft="@dimen/default_left_margin"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorPrimaryDark"
             android:gravity="start|center_vertical"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -59,7 +58,6 @@
         <TextView
             android:id="@+id/body"
             android:layout_width="0dp"
-            android:textColor="@color/grey"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_left_margin"
             android:layout_marginLeft="@dimen/default_left_margin"
@@ -67,6 +65,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="start|center_vertical"
+            android:textColor="@color/grey"
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -85,17 +84,17 @@
             android:id="@+id/commentsTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="@dimen/default_left_margin"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:paddingLeft="@dimen/default_left_margin"
-            android:gravity="start|center_vertical"
-            android:textSize="15sp"
+            android:text="@string/comments_title"
             android:textColor="@color/white"
-            android:background="@color/colorPrimary"
+            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spacer"
-            android:text="@string/comments_title"/>
+            app:layout_constraintTop_toBottomOf="@id/spacer"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentList"

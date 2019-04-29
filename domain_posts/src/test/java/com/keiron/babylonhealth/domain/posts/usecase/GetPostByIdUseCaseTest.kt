@@ -1,7 +1,7 @@
 package com.keiron.babylonhealth.domain.posts.usecase
 
+import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.babylonhealth.domain.posts.exception.NoPostFoundException
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify

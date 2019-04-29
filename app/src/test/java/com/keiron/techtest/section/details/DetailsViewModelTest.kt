@@ -2,8 +2,8 @@ package com.keiron.techtest.section.details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.babylonhealth.domain.posts.exception.NoPostFoundException
-import com.keiron.babylonhealth.domain.posts.model.PostDetails
 import com.keiron.babylonhealth.domain.posts.usecase.GetPostByIdUseCase
 import com.keiron.library.common.schedulers.SchedulersProvider
 import com.keiron.techtest.section.details.mapper.PostDetailsToDetailsUiModelMapper
