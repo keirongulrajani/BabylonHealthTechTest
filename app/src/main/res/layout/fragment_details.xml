@@ -40,19 +40,30 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title of the post"/>
 
+        <ImageView
+            android:id="@+id/authorAvatar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/default_left_margin"
+            android:layout_marginLeft="@dimen/default_left_margin"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:src="@drawable/ic_launcher_background"/>
+
         <TextView
             android:id="@+id/author"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_left_margin"
-            android:layout_marginLeft="@dimen/default_left_margin"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:gravity="start|center_vertical"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/authorAvatar"
+            app:layout_constraintLeft_toRightOf="@id/authorAvatar"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/authorAvatar"
             tools:text="Author of the post"/>
 
         <TextView

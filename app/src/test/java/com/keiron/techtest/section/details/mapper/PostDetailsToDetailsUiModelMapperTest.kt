@@ -3,6 +3,8 @@ package com.keiron.techtest.section.details.mapper
 import com.keiron.babylonhealth.domain.common.model.CommentDetails
 import com.keiron.babylonhealth.domain.common.model.PostDetails
 import com.keiron.babylonhealth.domain.common.model.UserDetails
+import com.keiron.babylonhealth.ui.components.mapper.ImageUrlToImageUiModelMapper
+import com.keiron.babylonhealth.ui.components.model.ImageUiModel
 import com.keiron.techtest.section.details.model.CommentUiModel
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -17,12 +19,14 @@ class PostDetailsToDetailsUiModelMapperTest {
 
     @Mock
     private lateinit var commentToCommentUiModelMapper: CommentToCommentUiModelMapper
+    @Mock
+    private lateinit var imageUiModelMapper: ImageUrlToImageUiModelMapper
 
     private lateinit var classUnderTest: PostDetailsToDetailsUiModelMapper
     @Before
     fun setUp() {
         initMocks(this)
-        classUnderTest = PostDetailsToDetailsUiModelMapper(commentToCommentUiModelMapper)
+        classUnderTest = PostDetailsToDetailsUiModelMapper(commentToCommentUiModelMapper, imageUiModelMapper)
     }
 
     @Test
@@ -30,8 +34,10 @@ class PostDetailsToDetailsUiModelMapperTest {
         // Given
         val expectedPostTitle = "title"
         val expectedAuthorTitle = "username"
+        val expectedAvatarUrl = "url"
         val user = mock<UserDetails> {
             on { username } doReturn expectedAuthorTitle
+            on { avatarUrl } doReturn expectedAvatarUrl
         }
         val expectedBody = "body"
         val commentList = listOf(mock<CommentDetails>())
@@ -44,6 +50,8 @@ class PostDetailsToDetailsUiModelMapperTest {
 
         val expectedCommentUiModels = listOf<CommentUiModel>(mock())
         whenever(commentToCommentUiModelMapper.mapToPresentation(commentList)).thenReturn(expectedCommentUiModels)
+        val expectedImageUiModel = mock<ImageUiModel>()
+        whenever(imageUiModelMapper.mapToPresentation(expectedAvatarUrl)).thenReturn(expectedImageUiModel)
 
         // When
         val uiModel = classUnderTest.mapToPresentation(postDetails)
@@ -53,6 +61,7 @@ class PostDetailsToDetailsUiModelMapperTest {
             assertEquals(expectedPostTitle, postTitle)
             assertEquals(expectedAuthorTitle, authorTitle)
             assertEquals(expectedBody, body)
+            assertEquals(expectedImageUiModel, authorAvatar)
             assertEquals(expectedCommentUiModels, comments)
         }
     }

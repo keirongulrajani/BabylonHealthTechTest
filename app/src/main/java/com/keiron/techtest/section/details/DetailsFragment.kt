@@ -4,13 +4,23 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.keiron.babylonhealth.ui.components.extensions.observe
 import com.keiron.babylonhealth.ui.components.recyclerview.decoration.SimpleDividerItemDecoration
 import com.keiron.techtest.R
 import com.keiron.techtest.di.ApplicationComponentHolder
+import com.keiron.techtest.drawable.LoadingDrawable
 import com.keiron.techtest.section.details.model.DetailsViewState
 import com.keiron.techtest.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.android.synthetic.main.fragment_details.author
+import kotlinx.android.synthetic.main.fragment_details.authorAvatar
+import kotlinx.android.synthetic.main.fragment_details.body
+import kotlinx.android.synthetic.main.fragment_details.commentList
+import kotlinx.android.synthetic.main.fragment_details.contentContainer
+import kotlinx.android.synthetic.main.fragment_details.errorText
+import kotlinx.android.synthetic.main.fragment_details.progress
+import kotlinx.android.synthetic.main.fragment_details.title
 import javax.inject.Inject
 
 class DetailsFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
@@ -62,6 +72,12 @@ class DetailsFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
             title.text = it.detailsUiModel!!.postTitle
             author.text = it.detailsUiModel.authorTitle
             body.text = it.detailsUiModel.body
+
+            Glide.with(authorAvatar)
+                .load(it.detailsUiModel.authorAvatar.imageUrl)
+                .placeholder(LoadingDrawable(authorAvatar.context))
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(authorAvatar)
 
             commentAdapter.updateUiModels(it.detailsUiModel.comments)
         } else contentContainer.visibility = View.GONE
