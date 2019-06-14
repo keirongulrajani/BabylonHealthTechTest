@@ -1,6 +1,6 @@
-# BabylonHealthTechTest - Keiron Gulrajani
+# TechTest - Keiron Gulrajani
 
-As per the instructions listed on the [Babylon Health code challenge](https://github.com/Babylonpartners/android-playbook/blob/master/recruitment/code_challenge.md), I have construced an app with  two screens, as follows:
+As per the instructions listed on [this code challenge](https://github.com/Babylonpartners/android-playbook/blob/master/recruitment/code_challenge.md), I have construced an app with  two screens, as follows:
 - A screen with a list of clickable posts with the following information:
     - Post title
     - Author name
